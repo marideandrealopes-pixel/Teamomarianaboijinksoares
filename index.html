@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Convite 💜</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #E6D6FF, #C8A2FF);
+        }
+        #content {
+            background-color: #6A0DAD;
+            color: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            padding: 30px;
+            text-align: center;
+            max-width: 320px;
+        }
+        #yesButton, #noButton {
+            font-size: 18px;
+            border-radius: 12px;
+            padding: 12px;
+            border: none;
+            cursor: pointer;
+            margin: 10px;
+        }
+        #yesButton {
+            background-color: #9B59B6;
+            color: white;
+        }
+        #noButton {
+            background-color: #D988FF;
+            color: white;
+        }
+    .heart {
+        position: fixed;
+        top: -100px;
+        width: 25px;
+        height: 25px;
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 29.6"><path fill="%23FF69B4" d="M16 29.6c-1-.6-21-12.6-16-20C5.7 5.6 10.3 4 16 11c5.7-7 10.3-5.4 16-2.6 5 7.4-15 19.6-16 20z"/></svg>');
+        background-size: cover;
+        animation: fall 4s linear infinite;
+    }
+
+    @keyframes fall {
+        0% { transform: translateY(-100vh); }
+        100% { transform: translateY(100vh); }
+    }
+</style>
+</head>
+<body>
+    <div id="content">
+        <h2 id="question">Aceita sair comigo? 💜</h2>
+        <button id="yesButton">SIM 😍</button>
+        <button id="noButton">não 😒</button>
+        <p id="message"></p>
+    </div>
+<script>
+    var noClickCount = 0;
+
+    document.getElementById('noButton').addEventListener('click', function() {
+        noClickCount++;
+
+        if (noClickCount == 1) {
+            document.getElementById('yesButton').style.fontSize = '30px';
+        } else if (noClickCount == 2) {
+            this.style.fontSize = '10px';
+            document.getElementById('yesButton').style.fontSize = '40px';
+        } else if (noClickCount == 3) {
+            document.getElementById('yesButton').style.fontSize = '70px';
+            this.style.fontSize = '8px';
+        } else if (noClickCount >= 4) {
+            this.style.position = 'absolute';
+            this.style.left = Math.random() * window.innerWidth + 'px';
+            this.style.top = Math.random() * window.innerHeight + 'px';
+        }
+    });
+
+    document.getElementById('yesButton').addEventListener('click', function() {
+        document.getElementById('question').innerText = '💜 Nosso date 💜';
+
+        document.getElementById('message').innerHTML = `
+        <br>
+        📅 <b>02/03</b><br><br>
+
+        ⏰ <b>19:10h</b> - Uma segunda chance + vinho 🍷 (filme de romance)<br><br>
+
+        ⏰ <b>21:10h</b> - Madre Mia 🍝<br><br>
+
+        ⏰ <b>23h+</b> - vc decide… 😅<br><br>
+
+        💌 Te espero lá gatita, te amo 💜
+        `;
+
+        for (var i = 0; i < 60; i++) {
+            var heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.style.left = Math.random() * window.innerWidth + 'px';
+            heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+            heart.style.animationDelay = Math.random() * 2 + 's';
+            document.body.appendChild(heart);
+        }
+
+        document.getElementById('yesButton').style.display = 'none';
+        document.getElementById('noButton').style.display = 'none';
+    });
+</script>
+</body>
+</html>
+:::
